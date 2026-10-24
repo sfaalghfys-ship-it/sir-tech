@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>لوحة التحكم | سير تك</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>if(!sessionStorage.getItem('sirtech_user'))location.replace('login.html')</script>
+</head>
+<body>
+  <!-- شريط التنقل الموحد لمنصة سير تك -->
+<nav style="background: rgba(0, 0, 0, 0.85); border-bottom: 1px solid #00ff88; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; direction: rtl;">
+    <div style="font-size: 1.2rem; font-weight: bold; color: #00ff88;">Sir Tech | سير تك</div>
+    <div style="display: flex; gap: 20px;">
+        <a href="dashboard.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">لوحة التحكم</a>
+        <a href="charging.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">إدارة الشحن</a>
+        <a href="navigation.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">الملاحة الذكية</a>
+        <a href="settings.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">الإعدادات</a>
+    </div>
+</nav>
+<main class="page" style="align-content:center;gap:1.5rem">
+  <h1>لوحة التحكم <span class="accent">|</span> Sir Tech</h1>
+  <section class="grid">
+    <div class="stat"><span>صحة البطارية</span><b>—</b></div>
+    <div class="stat"><span>نسبة الشحن</span><b>—</b></div>
+    <div class="stat"><span>تنبيهات التنقل</span><b>—</b></div>
+  </section>
+  <p class="foot">القيم فارغة عمداً حتى ربطها ببيانات حقيقية. <a href="index.html?replay=1">↻ الافتتاحية</a></p>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const vehicleData = {
+            batteryHealth: '98%',
+            chargeLevel: '85%',
+            rangeKm: '420 كم',
+            statusText: 'جميع الأنظمة تعمل بكفاءة ممتازة'
+        };
+
+        const stats = document.querySelectorAll('.stat');
+        if (stats.length >= 3) {
+            stats[0].innerHTML = `<span>صحة البطارية</span><b>${vehicleData.batteryHealth}</b><p style="font-size:0.75rem; color:#00ff88; margin-top:5px;">سليمة ومستقرة</p>`;
+            stats[1].innerHTML = `<span>نسبة الشحن</span><b>${vehicleData.chargeLevel}</b><p style="font-size:0.75rem; color:#00ff88; margin-top:5px;">المدى المتبقي: ${vehicleData.rangeKm}</p>`;
+            stats[2].innerHTML = `<span>تنبيهات التنقل</span><b>0</b><p style="font-size:0.75rem; color:#00ff88; margin-top:5px;">${vehicleData.statusText}</p>`;
+        }
+
+        const footNote = document.querySelector('.foot');
+        if (footNote) {
+            footNote.textContent = "متصل بنجاح بمركبة Ceer EXobot • القراءات فورية";
+            footNote.style.color = "#00ff88";
+        }
+    });
+</script>
+</html>

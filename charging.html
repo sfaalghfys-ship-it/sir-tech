@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050a08;--surface:#0a1410;--card:#0e1a15;--card2:#12221b;--line:#1c3027;--ink:#e9f5ef;--mute:#8aa399;--accent:#00ff88;--accent-ink:#00130a;--warn:#ffb020;--bad:#ff5d5d;color-scheme:dark;box-sizing:border-box}
+:root[data-theme="light"]{--bg:#f1f6f3;--surface:#fff;--card:#fff;--card2:#eef5f1;--line:#d9e6df;--ink:#10201a;--mute:#5a7168;--accent:#00a860;--accent-ink:#fff;--warn:#b86e00;--bad:#c62828;color-scheme:light}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;font-family:Tajawal,"Segoe UI",Tahoma,sans-serif;color:var(--ink);line-height:1.65;background:radial-gradient(900px 420px at 85% -8%,rgba(0,255,136,.09),transparent),var(--bg);min-height:100vh}
+a{color:inherit}
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:12px 20px;padding-top:calc(12px + env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;font-size:1.15rem;white-space:nowrap}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.brand small{color:var(--mute);font-weight:500;font-size:.75rem;letter-spacing:.12em}
+.nav nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav nav a{padding:7px 16px;border-radius:99px;text-decoration:none;color:var(--mute);font-weight:500;white-space:nowrap;transition:.2s}
+.nav nav a:hover{color:var(--ink)}
+.nav nav a[aria-current=page]{color:var(--accent-ink);background:var(--accent);font-weight:700}
+.page{max-width:1100px;margin:0 auto;padding:26px 16px 30px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+h1{margin:0;font-size:1.8rem;font-weight:800}h2{margin:0 0 12px;font-size:1.05rem;font-weight:700}
+.sub{margin:2px 0 0;color:var(--mute);font-size:.9rem}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.stat.wide{grid-column:1/-1}
+.k{display:block;color:var(--mute);font-size:.85rem}
+.v{display:block;font-size:2rem;font-weight:800;line-height:1.2;margin-top:2px}
+.accent{color:var(--accent)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;box-shadow:0 0 12px var(--accent);transition:width .4s}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:99px;font-size:.8rem;font-weight:700;background:var(--card2);border:1px solid var(--line)}
+.chip.ok{color:var(--accent);border-color:var(--accent)}.chip.warn{border-color:var(--warn)}.chip.bad{border-color:var(--bad)}
+label.f{display:block;margin-top:14px;font-size:.88rem;color:var(--mute)}
+label.f b{color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=time],select{width:100%;margin-top:4px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--ink);font:inherit}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.seg button,.btn{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--ink);border-radius:12px;padding:9px 16px;font:inherit;font-weight:500}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:800;box-shadow:0 8px 28px rgba(0,255,136,.22)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border:0}
+.switch{position:relative;width:46px;height:26px;flex:none}
+.switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:1}
+.switch i{position:absolute;inset:0;border-radius:99px;background:var(--line);transition:.2s}
+.switch i:after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:.2s}
+.switch input:checked+i{background:var(--accent)}
+.switch input:checked+i:after{inset-inline-start:23px;background:var(--accent-ink)}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.list li{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:var(--card2);border:1px solid var(--line);cursor:pointer}
+.list li[aria-selected=true]{border-color:var(--accent)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.map{width:100%;height:auto;border-radius:14px;background:var(--card2);border:1px solid var(--line)}
+.two{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.modes{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.mode{cursor:pointer;text-align:start;border:1px solid var(--line);background:var(--card2);color:var(--ink);border-radius:14px;padding:14px;font:inherit}
+.mode b{display:block;font-size:1.05rem}.mode span{color:var(--mute);font-size:.8rem}
+.mode[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset,0 0 24px rgba(0,255,136,.15)}
+.foot{max-width:1100px;margin:0 auto;padding:10px 16px calc(28px + env(safe-area-inset-bottom,0px));color:var(--mute);font-size:.8rem}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,30px);opacity:0;background:var(--accent);color:var(--accent-ink);padding:10px 22px;border-radius:99px;font-weight:700;transition:.3s;z-index:99}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.nav .out{margin-inline-start:auto;padding:7px 16px;border-radius:99px;border:1px solid var(--line);text-decoration:none;color:var(--mute);font-size:.9rem;white-space:nowrap}.nav .out:hover{color:var(--bad);border-color:var(--bad)}
+</style>
+<script>
+(function () {
+  "use strict";
+  var HOME = "dashboard.html", LOGIN = "login.html"; // غيّريهما لو أسماء ملفاتك مختلفة
+  var KEY = "sirtech_store_v1";
+  var D = { soc: 68, soh: 93, capacity: 80, mode: "comfort", modeFactor: 1, theme: "dark", prefs: null };
+  var S;
+  try { S = Object.assign({}, D, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { S = Object.assign({}, D); }
+  window.SirStore = {
+    get: function (k) { return S[k]; },
+    set: function (k, v) { S[k] = v; try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+  };
+  window.SirTheme = function (t) {
+    var r = t === "auto" ? (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark") : t;
+    document.documentElement.setAttribute("data-theme", r);
+  };
+  SirTheme(S.theme);
+  window.SirToast = function (msg) {
+    var t = document.getElementById("toast");
+    if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add("on");
+    clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("on"); }, 2200);
+  };
+  var LINKS = [["home", "الرئيسية", HOME], ["charging", "إدارة الشحن", "charging.html"], ["navigation", "الملاحة", "navigation.html"], ["settings", "الإعدادات", "settings.html"]];
+  document.addEventListener("DOMContentLoaded", function () {
+    var el = document.getElementById("nav"); if (!el) return;
+    var cur = document.body.dataset.page;
+    el.className = "nav";
+    el.innerHTML = '<a class="brand" href="' + HOME + '"><i></i>سير تك<small>SIR TECH</small></a><nav aria-label="التنقل الرئيسي">' +
+      LINKS.map(function (l) { return '<a href="' + l[2] + '"' + (l[0] === cur ? ' aria-current="page"' : "") + ">" + l[1] + "</a>"; }).join("") + '</nav><a class="out" href="' + LOGIN + '">تسجيل الخروج</a>';
+  });
+})();
+</script>
+<title>إدارة الشحن | سير تك</title>
+</head>
+<body data-page="charging">
+  <!-- شريط التنقل الموحد لمنصة سير تك -->
+<nav style="background: rgba(0, 0, 0, 0.85); border-bottom: 1px solid #00ff88; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; direction: rtl;">
+    <div style="font-size: 1.2rem; font-weight: bold; color: #00ff88;">Sir Tech | سير تك</div>
+    <div style="display: flex; gap: 20px;">
+        <a href="dashboard.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">لوحة التحكم</a>
+        <a href="charging.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">إدارة الشحن</a>
+        <a href="navigation.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">الملاحة الذكية</a>
+        <a href="settings.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">الإعدادات</a>
+    </div>
+</nav>
+<header id="nav"></header>
+<main class="page">
+  <div class="head"><div><h1>إدارة الشحن</h1><p class="sub">جدولة ذكية، محطات قريبة، وتقدير التكلفة</p></div><span class="chip" id="chState">جاهز</span></div>
+
+  <section class="grid" aria-label="مؤشرات الشحن">
+    <div class="stat"><span class="k">نسبة الشحن الحالية</span><b class="v"><span id="socNow">0</span>%</b><div class="bar"><i id="socBar"></i></div></div>
+    <div class="stat"><span class="k">الطاقة المطلوبة</span><b class="v accent"><span id="kwh">0</span> kWh</b></div>
+    <div class="stat"><span class="k">التكلفة التقديرية</span><b class="v accent"><span id="cost">0</span> ر.س</b></div>
+    <div class="stat"><span class="k">مدة الشحن المتوقعة</span><b class="v" id="dur">-</b></div>
+  </section>
+
+  <section class="grid two">
+    <div class="stat">
+      <h2>الجدولة الذكية</h2>
+      <label class="f" for="tgt">مستوى الشحن المستهدف: <b><span id="tgtV"></span>%</b></label>
+      <input id="tgt" type="range" min="50" max="100" step="5" value="80">
+      <span class="k" style="margin-top:14px">سرعة الشحن</span>
+      <div class="seg" id="speed"><button type="button" data-kw="11" aria-pressed="true">عادي AC · 11 kW</button><button type="button" data-kw="100" aria-pressed="false">سريع DC · 100 kW</button></div>
+      <div class="row" style="margin-top:8px"><span>الشحن في وقت الذروة المنخفضة (أرخص)</span><label class="switch"><input id="off" type="checkbox" aria-label="وقت الذروة المنخفضة"><i></i></label></div>
+      <label class="f" for="ready">أريد المركبة جاهزة الساعة</label>
+      <input id="ready" type="time" value="07:00">
+      <p class="k" style="margin-top:12px">يبدأ الشحن عند: <b class="accent" id="startAt">-</b></p>
+      <div class="btns"><button class="btn primary" id="sched" type="button">تفعيل الجدولة</button><button class="btn" id="now" type="button">ابدأ الشحن الآن</button></div>
+    </div>
+    <div class="stat">
+      <h2>معاينة الخريطة <small class="k" style="display:inline">(تخطيطية)</small></h2>
+      <svg class="map" id="map" viewBox="0 0 400 230" role="img" aria-label="خريطة تخطيطية للمحطات القريبة"></svg>
+    </div>
+  </section>
+
+  <section class="stat wide">
+    <div class="head" style="margin-bottom:8px"><h2 style="margin:0">المحطات القريبة</h2>
+      <div class="seg" id="flt"><button type="button" data-f="all" aria-pressed="true">الكل</button><button type="button" data-f="fast" aria-pressed="false">سريع</button><button type="button" data-f="norm" aria-pressed="false">عادي</button></div></div>
+    <ul class="list" id="stations"></ul>
+    <p class="k" style="margin-top:10px">آخر تحديث: <span id="upd">-</span></p>
+  </section>
+</main>
+<footer class="foot">سير تك · بيانات المحطات والتعرفة افتراضات تجريبية للعرض وليست حقيقية.</footer>
+
+<script>
+"use strict";
+/* ---------- المنطق (دوال نقية قابلة للاختبار) ---------- */
+const CONFIG = { capacityKwh: 80, baseConsumption: 18 /* kWh/100km, افتراض */, reserve: 10 };
+
+function clamp(v, lo, hi){ return Math.min(hi, Math.max(lo, v)); }
+
+function consumptionPer100(tempC, speedKmh, acOn, base = CONFIG.baseConsumption){
+  const speedFactor = 1 + Math.max(0, speedKmh - 90) * 0.006;
+  const heatFactor  = 1 + Math.max(0, tempC - 25) * 0.004;
+  const acFactor    = acOn ? 1 + clamp((tempC - 20) * 0.006, 0, 0.2) : 1;
+  return base * speedFactor * heatFactor * acFactor;
+}
+
+function estimateRangeKm(soc, soh, tempC, speedKmh, acOn){
+  const usableKwh = CONFIG.capacityKwh * (soh / 100) * (soc / 100);
+  return Math.round((usableKwh / consumptionPer100(tempC, speedKmh, acOn)) * 100);
+}
+
+function sohLabel(soh){
+  if (soh >= 90) return { text: "ممتازة", cls: "ok" };
+  if (soh >= 80) return { text: "جيدة", cls: "warn" };
+  return { text: "تحتاج فحصًا", cls: "bad" };
+}
+
+function buildAlerts(s){
+  const out = [];
+  if (s.soc <= 20) out.push({ cls: "bad", text: "الشحن منخفض (" + s.soc + "%). خطّط لمحطة شحن قريبة." });
+  if (s.cellTemp >= 45) out.push({ cls: "bad", text: "حرارة الخلايا مرتفعة (" + s.cellTemp + "°م). قلّل السرعة أو ركّن بالظل." });
+  else if (s.cellTemp >= 38) out.push({ cls: "warn", text: "حرارة الخلايا أعلى من المعتاد (" + s.cellTemp + "°م)." });
+  if (s.tripKm > s.rangeKm) out.push({ cls: "bad", text: "الرحلة المحددة أطول من المدى الحالي، تحتاج توقف شحن." });
+  if (!out.length) out.push({ cls: "ok", text: "كل شيء طبيعي، لا توجد تنبيهات." });
+  return out;
+}
+
+function planTrip(tripKm, rangeKm, reservePct = CONFIG.reserve){
+  const safeRange = Math.floor(rangeKm * (1 - reservePct / 100));
+  if (safeRange <= 0) return { feasible: false, stops: Infinity, safeRange };
+  const stops = Math.max(0, Math.ceil(tripKm / safeRange) - 1);
+  return { feasible: true, stops, safeRange };
+}
+
+if (typeof module !== "undefined") module.exports = { CONFIG, clamp, consumptionPer100, estimateRangeKm, sohLabel, buildAlerts, planTrip };
+
+</script>
+<script>
+"use strict";
+var Energy = (function () {
+  // كل القيم أدناه افتراضات تجريبية وليست مواصفات رسمية
+  var POWER = { ac: 11, dc: 100 };                       // kW
+  var TARIFF = { home: 0.18, offpeak: 0.12, pub: 0.45 }; // ر.س/kWh
+  var EFF = 0.92;
+  function cp() {
+    var f = typeof module !== "undefined" ? require("./logic.js").consumptionPer100 : consumptionPer100;
+    return f.apply(null, arguments);
+  }
+  function energyNeeded(cap, soh, from, to) { return Math.max(0, cap * (soh / 100) * (to - from) / 100); }
+  function chargeHours(kwh, kw) { return kwh / (kw * EFF); }
+  function cost(kwh, rate) { return kwh / EFF * rate; }
+  function fmtDur(h) { var m = Math.round(h * 60); return Math.floor(m / 60) + " س " + (m % 60) + " د"; }
+  function planRoute(o) {
+    var cpk = cp(o.temp, o.speed, o.ac) * (o.mult || 1) / 100, effCap = o.cap * o.soh / 100;
+    var pos = 0, soc = o.soc, stops = [], guard = 0, ok = true, chargeMin = 0;
+    while (pos < o.distKm) {
+      if (guard++ > 12) { ok = false; break; }
+      var remain = o.distKm - pos, reach = Math.max(0, (soc - o.reserve) / 100 * effCap) / cpk;
+      if (reach >= remain) { soc -= remain * cpk / effCap * 100; pos = o.distKm; break; }
+      var leg = Math.floor(reach * 0.9);
+      if (leg < 20) { ok = false; break; }
+      soc -= leg * cpk / effCap * 100; pos += leg;
+      var add = energyNeeded(o.cap, o.soh, soc, o.chargeTo), min = Math.round(chargeHours(add, o.kw) * 60);
+      stops.push({ km: pos, arrivalSoc: Math.round(soc), chargeTo: o.chargeTo, minutes: min, kwh: add });
+      chargeMin += min; soc = o.chargeTo;
+    }
+    var kwhTotal = o.distKm * cpk;
+    return { feasible: ok, stops: stops, arrivalSoc: Math.round(soc), kwhTotal: kwhTotal, per100: cpk * 100,
+      percentUsed: kwhTotal / effCap * 100, driveHours: o.distKm / o.speed, chargeMin: chargeMin };
+  }
+  return { POWER: POWER, TARIFF: TARIFF, energyNeeded: energyNeeded, chargeHours: chargeHours, cost: cost, fmtDur: fmtDur, planRoute: planRoute };
+})();
+if (typeof module !== "undefined") module.exports = Energy;
+
+</script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (i) { return document.getElementById(i); }, S = SirStore;
+  var st = { tgt: 80, kw: 11, off: false, ready: "07:00", sched: false, charging: false, filter: "all", sel: null, soc: S.get("soc") };
+  var stations = [ // بيانات تجريبية
+    { id: 1, n: "محطة النخيل", d: 2.4, x: 250, y: 90, f: [4, 2], c: [6, 3], p: 0.45 },
+    { id: 2, n: "محطة الواحة", d: 4.1, x: 120, y: 60, f: [2, 0], c: [8, 5], p: 0.42 },
+    { id: 3, n: "محطة الدائري", d: 6.8, x: 310, y: 170, f: [6, 4], c: [4, 1], p: 0.48 },
+    { id: 4, n: "مركز الشمال", d: 9.3, x: 80, y: 180, f: [0, 0], c: [10, 7], p: 0.40 },
+    { id: 5, n: "محطة المطار", d: 14.7, x: 350, y: 40, f: [8, 6], c: [0, 0], p: 0.50 }
+  ];
+
+  function calc() {
+    var kwh = Energy.energyNeeded(S.get("capacity"), S.get("soh"), st.soc, st.tgt);
+    var rate = st.kw >= 50 ? Energy.TARIFF.pub : (st.off ? Energy.TARIFF.offpeak : Energy.TARIFF.home);
+    return { kwh: kwh, h: Energy.chargeHours(kwh, st.kw), cost: Energy.cost(kwh, rate) };
+  }
+  function startAt(h) {
+    var p = st.ready.split(":"), m = ((+p[0] * 60 + +p[1] - Math.round(h * 60)) % 1440 + 1440) % 1440;
+    return ("0" + Math.floor(m / 60)).slice(-2) + ":" + ("0" + (m % 60)).slice(-2);
+  }
+  function lvl(free, total) { return total === 0 ? "bad" : free === 0 ? "bad" : free <= 1 ? "warn" : "ok"; }
+  function tag(label, a) { return '<span class="chip ' + lvl(a[1], a[0]) + '">' + label + " " + a[1] + "/" + a[0] + "</span>"; }
+
+  function render() {
+    var c = calc();
+    $("tgtV").textContent = st.tgt;
+    $("socNow").textContent = Math.round(st.soc);
+    $("socBar").style.width = st.soc + "%";
+    $("kwh").textContent = c.kwh.toFixed(1);
+    $("cost").textContent = c.cost.toFixed(2);
+    $("dur").textContent = c.kwh > 0 ? Energy.fmtDur(c.h) : "لا حاجة للشحن";
+    $("startAt").textContent = c.kwh > 0 ? startAt(c.h) : "-";
+    $("sched").textContent = st.sched ? "إلغاء الجدولة" : "تفعيل الجدولة";
+    $("now").textContent = st.charging ? "أوقف الشحن" : "ابدأ الشحن الآن";
+    var chip = $("chState");
+    chip.textContent = st.charging ? "يشحن الآن ⚡" : st.sched ? "مجدول " + $("startAt").textContent : "جاهز";
+    chip.className = "chip" + (st.charging || st.sched ? " ok" : "");
+  }
+
+  function renderStations() {
+    var list = stations.filter(function (s) {
+      return st.filter === "fast" ? s.f[0] > 0 : st.filter === "norm" ? s.c[0] > 0 : true;
+    });
+    $("stations").innerHTML = list.map(function (s) {
+      var tags = (st.filter !== "norm" ? tag("سريع", s.f) : "") + (st.filter !== "fast" ? tag("عادي", s.c) : "");
+      return '<li data-id="' + s.id + '" tabindex="0" aria-selected="' + (st.sel === s.id) + '"><span><b>' + s.n + '</b> <span class="k" style="display:inline">· ' + s.d + ' كم · ' + s.p.toFixed(2) + ' ر.س/kWh</span></span><span class="tags">' + tags + "</span></li>";
+    }).join("") || '<li class="k">لا توجد محطات مطابقة</li>';
+    var color = { ok: "#00ff88", warn: "#ffb020", bad: "#ff5d5d" };
+    $("map").innerHTML = '<g stroke="currentColor" opacity=".08">' + [50, 100, 150, 200].map(function (y) { return '<line x1="0" x2="400" y1="' + y + '" y2="' + y + '"/>'; }).join("") + "</g>" +
+      '<circle cx="200" cy="115" r="14" fill="none" stroke="#00ff88" opacity=".5"/><circle cx="200" cy="115" r="6" fill="#00ff88"/><text x="200" y="145" font-size="11" text-anchor="middle" fill="currentColor">سيارتك</text>' +
+      stations.map(function (s) {
+        var l = lvl(s.f[1] + s.c[1], s.f[0] + s.c[0]);
+        return '<g data-id="' + s.id + '" style="cursor:pointer"><circle cx="' + s.x + '" cy="' + s.y + '" r="' + (st.sel === s.id ? 11 : 8) + '" fill="' + color[l] + '"/><text x="' + s.x + '" y="' + (s.y - 14) + '" font-size="10" text-anchor="middle" fill="currentColor">' + s.n + "</text></g>";
+      }).join("");
+    $("upd").textContent = new Date().toLocaleTimeString("ar-SA");
+  }
+
+  function pick(e) { var t = e.target.closest("[data-id]"); if (t) { st.sel = +t.dataset.id; renderStations(); } }
+  $("stations").addEventListener("click", pick); $("map").addEventListener("click", pick);
+  $("stations").addEventListener("keydown", function (e) { if (e.key === "Enter") pick(e); });
+
+  $("tgt").addEventListener("input", function () { st.tgt = +this.value; render(); });
+  $("ready").addEventListener("input", function () { st.ready = this.value || "07:00"; render(); });
+  $("off").addEventListener("change", function () { st.off = this.checked; render(); });
+  $("speed").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    st.kw = +b.dataset.kw;
+    [].forEach.call(this.children, function (x) { x.setAttribute("aria-pressed", x === b); });
+    render();
+  });
+  $("flt").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    st.filter = b.dataset.f;
+    [].forEach.call(this.children, function (x) { x.setAttribute("aria-pressed", x === b); });
+    renderStations();
+  });
+  $("sched").addEventListener("click", function () { st.sched = !st.sched; render(); SirToast(st.sched ? "تم تفعيل الجدولة" : "أُلغيت الجدولة"); });
+  $("now").addEventListener("click", function () {
+    if (!st.charging && st.soc >= st.tgt) { SirToast("الشحن الحالي بلغ الهدف"); return; }
+    st.charging = !st.charging;
+    if (!st.charging) S.set("soc", Math.round(st.soc));
+    render();
+  });
+
+  // محاكاة: كل ثانية = دقيقة شحن
+  setInterval(function () {
+    if (!st.charging) return;
+    var effCap = S.get("capacity") * S.get("soh") / 100;
+    st.soc = Math.min(st.tgt, st.soc + st.kw * 0.92 / 60 / effCap * 100);
+    if (st.soc >= st.tgt) { st.charging = false; S.set("soc", Math.round(st.soc)); SirToast("اكتمل الشحن"); }
+    render();
+  }, 1000);
+  // محاكاة تغيّر توفر المحطات لحظيًا
+  setInterval(function () {
+    var s = stations[Math.floor(Math.random() * stations.length)], k = Math.random() < 0.5 ? "f" : "c";
+    if (s[k][0] === 0) return;
+    s[k][1] = Math.max(0, Math.min(s[k][0], s[k][1] + (Math.random() < 0.5 ? -1 : 1)));
+    renderStations();
+  }, 5000);
+
+  render(); renderStations();
+})();
+
+</script>
+</body>
+</html>

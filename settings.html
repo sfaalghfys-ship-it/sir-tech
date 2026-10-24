@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050a08;--surface:#0a1410;--card:#0e1a15;--card2:#12221b;--line:#1c3027;--ink:#e9f5ef;--mute:#8aa399;--accent:#00ff88;--accent-ink:#00130a;--warn:#ffb020;--bad:#ff5d5d;color-scheme:dark;box-sizing:border-box}
+:root[data-theme="light"]{--bg:#f1f6f3;--surface:#fff;--card:#fff;--card2:#eef5f1;--line:#d9e6df;--ink:#10201a;--mute:#5a7168;--accent:#00a860;--accent-ink:#fff;--warn:#b86e00;--bad:#c62828;color-scheme:light}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;font-family:Tajawal,"Segoe UI",Tahoma,sans-serif;color:var(--ink);line-height:1.65;background:radial-gradient(900px 420px at 85% -8%,rgba(0,255,136,.09),transparent),var(--bg);min-height:100vh}
+a{color:inherit}
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:12px 20px;padding-top:calc(12px + env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;font-size:1.15rem;white-space:nowrap}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.brand small{color:var(--mute);font-weight:500;font-size:.75rem;letter-spacing:.12em}
+.nav nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav nav a{padding:7px 16px;border-radius:99px;text-decoration:none;color:var(--mute);font-weight:500;white-space:nowrap;transition:.2s}
+.nav nav a:hover{color:var(--ink)}
+.nav nav a[aria-current=page]{color:var(--accent-ink);background:var(--accent);font-weight:700}
+.page{max-width:1100px;margin:0 auto;padding:26px 16px 30px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+h1{margin:0;font-size:1.8rem;font-weight:800}h2{margin:0 0 12px;font-size:1.05rem;font-weight:700}
+.sub{margin:2px 0 0;color:var(--mute);font-size:.9rem}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.stat.wide{grid-column:1/-1}
+.k{display:block;color:var(--mute);font-size:.85rem}
+.v{display:block;font-size:2rem;font-weight:800;line-height:1.2;margin-top:2px}
+.accent{color:var(--accent)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;box-shadow:0 0 12px var(--accent);transition:width .4s}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:99px;font-size:.8rem;font-weight:700;background:var(--card2);border:1px solid var(--line)}
+.chip.ok{color:var(--accent);border-color:var(--accent)}.chip.warn{border-color:var(--warn)}.chip.bad{border-color:var(--bad)}
+label.f{display:block;margin-top:14px;font-size:.88rem;color:var(--mute)}
+label.f b{color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=time],select{width:100%;margin-top:4px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--ink);font:inherit}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.seg button,.btn{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--ink);border-radius:12px;padding:9px 16px;font:inherit;font-weight:500}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:800;box-shadow:0 8px 28px rgba(0,255,136,.22)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border:0}
+.switch{position:relative;width:46px;height:26px;flex:none}
+.switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:1}
+.switch i{position:absolute;inset:0;border-radius:99px;background:var(--line);transition:.2s}
+.switch i:after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:.2s}
+.switch input:checked+i{background:var(--accent)}
+.switch input:checked+i:after{inset-inline-start:23px;background:var(--accent-ink)}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.list li{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:var(--card2);border:1px solid var(--line);cursor:pointer}
+.list li[aria-selected=true]{border-color:var(--accent)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.map{width:100%;height:auto;border-radius:14px;background:var(--card2);border:1px solid var(--line)}
+.two{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.modes{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.mode{cursor:pointer;text-align:start;border:1px solid var(--line);background:var(--card2);color:var(--ink);border-radius:14px;padding:14px;font:inherit}
+.mode b{display:block;font-size:1.05rem}.mode span{color:var(--mute);font-size:.8rem}
+.mode[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset,0 0 24px rgba(0,255,136,.15)}
+.foot{max-width:1100px;margin:0 auto;padding:10px 16px calc(28px + env(safe-area-inset-bottom,0px));color:var(--mute);font-size:.8rem}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,30px);opacity:0;background:var(--accent);color:var(--accent-ink);padding:10px 22px;border-radius:99px;font-weight:700;transition:.3s;z-index:99}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.nav .out{margin-inline-start:auto;padding:7px 16px;border-radius:99px;border:1px solid var(--line);text-decoration:none;color:var(--mute);font-size:.9rem;white-space:nowrap}.nav .out:hover{color:var(--bad);border-color:var(--bad)}
+</style>
+<script>
+(function () {
+  "use strict";
+  var HOME = "dashboard.html", LOGIN = "login.html"; // غيّريهما لو أسماء ملفاتك مختلفة
+  var KEY = "sirtech_store_v1";
+  var D = { soc: 68, soh: 93, capacity: 80, mode: "comfort", modeFactor: 1, theme: "dark", prefs: null };
+  var S;
+  try { S = Object.assign({}, D, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { S = Object.assign({}, D); }
+  window.SirStore = {
+    get: function (k) { return S[k]; },
+    set: function (k, v) { S[k] = v; try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+  };
+  window.SirTheme = function (t) {
+    var r = t === "auto" ? (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark") : t;
+    document.documentElement.setAttribute("data-theme", r);
+  };
+  SirTheme(S.theme);
+  window.SirToast = function (msg) {
+    var t = document.getElementById("toast");
+    if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add("on");
+    clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("on"); }, 2200);
+  };
+  var LINKS = [["home", "الرئيسية", HOME], ["charging", "إدارة الشحن", "charging.html"], ["navigation", "الملاحة", "navigation.html"], ["settings", "الإعدادات", "settings.html"]];
+  document.addEventListener("DOMContentLoaded", function () {
+    var el = document.getElementById("nav"); if (!el) return;
+    var cur = document.body.dataset.page;
+    el.className = "nav";
+    el.innerHTML = '<a class="brand" href="' + HOME + '"><i></i>سير تك<small>SIR TECH</small></a><nav aria-label="التنقل الرئيسي">' +
+      LINKS.map(function (l) { return '<a href="' + l[2] + '"' + (l[0] === cur ? ' aria-current="page"' : "") + ">" + l[1] + "</a>"; }).join("") + '</nav><a class="out" href="' + LOGIN + '">تسجيل الخروج</a>';
+  });
+})();
+</script>
+<title>إعدادات المركبة والملف الشخصي | سير تك</title>
+</head>
+<body data-page="settings">
+  <!-- شريط التنقل الموحد لمنصة سير تك -->
+<nav style="background: rgba(0, 0, 0, 0.85); border-bottom: 1px solid #00ff88; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; direction: rtl;">
+    <div style="font-size: 1.2rem; font-weight: bold; color: #00ff88;">Sir Tech | سير تك</div>
+    <div style="display: flex; gap: 20px;">
+        <a href="dashboard.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">لوحة التحكم</a>
+        <a href="charging.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">إدارة الشحن</a>
+        <a href="navigation.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">الملاحة الذكية</a>
+        <a href="settings.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">الإعدادات</a>
+    </div>
+</nav>
+<header id="nav"></header>
+<main class="page">
+  <div class="head"><div><h1>إعدادات المركبة والملف الشخصي</h1><p class="sub">تُحفظ محليًا في متصفحك وتؤثر على صفحتي الشحن والملاحة</p></div><span class="chip ok">Ceer EXOBOT</span></div>
+
+  <section class="grid two">
+    <div class="stat">
+      <h2>القياسات (Telemetry)</h2>
+      <label class="f" for="capacity">سعة البطارية (kWh) — قيمة تجريبية</label><input id="capacity" type="number" min="20" max="200" step="1">
+      <label class="f" for="soh">صحة البطارية SoH: <b><span id="sohV"></span>%</b></label><input id="soh" type="range" min="50" max="100">
+      <label class="f" for="soc">نسبة الشحن الحالية: <b><span id="socV"></span>%</b></label><input id="soc" type="range" min="0" max="100">
+      <div class="row"><span class="k">الطراز</span><b>Ceer EXOBOT</b></div>
+      <div class="row"><span class="k">إصدار النظام</span><b>تجريبي 0.1</b></div>
+    </div>
+    <div class="stat">
+      <h2>بيانات المالك</h2>
+      <label class="f" for="name">الاسم</label><input id="name" type="text" autocomplete="name">
+      <label class="f" for="phone">رقم الجوال</label><input id="phone" type="tel" dir="ltr" autocomplete="tel" style="text-align:right">
+      <label class="f" for="email">البريد الإلكتروني</label><input id="email" type="email" dir="ltr" autocomplete="email" style="text-align:right">
+    </div>
+  </section>
+
+  <section class="stat wide" style="margin-bottom:14px">
+    <h2>أنماط القيادة</h2>
+    <div class="modes" id="modes"></div>
+    <div class="grid" style="margin:8px 0 0">
+      <div><label class="f" for="regen">قوة الاسترجاع (Regen): <b id="regenV"></b></label><input id="regen" type="range" min="0" max="3"></div>
+      <div><label class="f" for="accel">استجابة التسارع: <b><span id="accelV"></span>%</b></label><input id="accel" type="range" min="30" max="100"></div>
+      <div><label class="f" for="vmax">أقصى سرعة: <b><span id="vmaxV"></span> كم/س</b></label><input id="vmax" type="range" min="80" max="180" step="5"></div>
+      <div><label class="f" for="clim">شدة التكييف: <b><span id="climV"></span>%</b></label><input id="clim" type="range" min="30" max="100"></div>
+    </div>
+    <p class="k" id="modeNote" style="margin-top:10px"></p>
+  </section>
+
+  <section class="grid two">
+    <div class="stat"><h2>الأمان</h2><div id="sec"></div></div>
+    <div class="stat"><h2>الإشعارات</h2><div id="ntf"></div>
+      <label class="f" for="lowTh">حد تنبيه انخفاض الشحن: <b><span id="lowV"></span>%</b></label><input id="lowTh" type="range" min="5" max="50" step="5"></div>
+  </section>
+
+  <section class="stat wide">
+    <h2>المظهر</h2>
+    <div class="seg" id="theme"><button type="button" data-t="dark">داكن</button><button type="button" data-t="light">فاتح</button><button type="button" data-t="auto">تلقائي</button></div>
+    <div class="btns"><button class="btn primary" id="save" type="button">حفظ الإعدادات</button><button class="btn" id="reset" type="button">استعادة الافتراضي</button></div>
+  </section>
+</main>
+<footer class="foot">سير تك · الإعدادات تُحفظ في localStorage على هذا الجهاز فقط (لا يوجد خادم بعد).</footer>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (i) { return document.getElementById(i); }, S = SirStore;
+  var MODES = {
+    eco: { n: "Eco", d: "أعلى كفاءة وأقل استهلاك", regen: 3, accel: 40, vmax: 100, clim: 50, mult: 0.92 },
+    comfort: { n: "Comfort", d: "توازن بين الراحة والكفاءة", regen: 2, accel: 65, vmax: 120, clim: 70, mult: 1 },
+    sport: { n: "Sport", d: "استجابة أسرع واستهلاك أعلى", regen: 1, accel: 100, vmax: 160, clim: 80, mult: 1.12 },
+    custom: { n: "Custom", d: "اضبطها بنفسك" }
+  };
+  var SW = { sec: [["pin", "فتح بالبصمة أو رمز PIN"], ["tfa", "التحقق بخطوتين"], ["valet", "وضع الصيانة (Valet)"], ["lockAlert", "تنبيه عند الفتح عن بُعد"]],
+             ntf: [["nLow", "انخفاض الشحن"], ["nDone", "اكتمال الشحن"], ["nStation", "توفر محطة شحن قريبة"], ["nHeat", "ارتفاع حرارة البطارية"]] };
+  var DEF = { name: "", phone: "", email: "", mode: "comfort", regen: 2, accel: 65, vmax: 120, clim: 70, lowTh: 20, theme: "dark",
+              pin: true, tfa: false, valet: false, lockAlert: true, nLow: true, nDone: true, nStation: false, nHeat: true };
+  var p = Object.assign({}, DEF, S.get("prefs") || {});
+
+  ["sec", "ntf"].forEach(function (g) {
+    $(g).innerHTML = SW[g].map(function (r) {
+      return '<label class="row"><span>' + r[1] + '</span><span class="switch"><input type="checkbox" data-k="' + r[0] + '"><i></i></span></label>';
+    }).join("");
+  });
+  $("modes").innerHTML = Object.keys(MODES).map(function (k) {
+    return '<button type="button" class="mode" data-m="' + k + '"><b>' + MODES[k].n + "</b><span>" + MODES[k].d + "</span></button>";
+  }).join("");
+
+  function mult() {
+    if (p.mode !== "custom") return MODES[p.mode].mult;
+    return Math.max(0.85, Math.min(1.25, 1 + (p.accel - 65) / 400 + (p.vmax - 120) / 800));
+  }
+  function paint() {
+    ["name", "phone", "email"].forEach(function (k) { $(k).value = p[k]; });
+    ["regen", "accel", "vmax", "clim", "lowTh"].forEach(function (k) {
+      $(k).value = p[k]; $(k).disabled = k !== "lowTh" && p.mode !== "custom";
+    });
+    $("regenV").textContent = ["لا يوجد", "خفيف", "متوسط", "قوي"][p.regen];
+    $("accelV").textContent = p.accel; $("vmaxV").textContent = p.vmax; $("climV").textContent = p.clim; $("lowV").textContent = p.lowTh;
+    [].forEach.call(document.querySelectorAll("[data-k]"), function (i) { i.checked = !!p[i.dataset.k]; });
+    [].forEach.call(document.querySelectorAll(".mode"), function (b) { b.setAttribute("aria-pressed", b.dataset.m === p.mode); });
+    [].forEach.call($("theme").children, function (b) { b.setAttribute("aria-pressed", b.dataset.t === p.theme); });
+    $("modeNote").textContent = "معامل الاستهلاك التقديري لهذا النمط: ×" + mult().toFixed(2) + " (افتراض تجريبي يُستخدم في صفحة الملاحة)" +
+      (p.mode === "custom" ? "" : " — اختر Custom لتعديل القيم");
+    $("capacity").value = S.get("capacity");
+    $("soh").value = S.get("soh"); $("sohV").textContent = S.get("soh");
+    $("soc").value = S.get("soc"); $("socV").textContent = S.get("soc");
+  }
+
+  $("modes").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-m]"); if (!b) return;
+    p.mode = b.dataset.m;
+    if (p.mode !== "custom") { var m = MODES[p.mode]; p.regen = m.regen; p.accel = m.accel; p.vmax = m.vmax; p.clim = m.clim; }
+    paint();
+  });
+  ["regen", "accel", "vmax", "clim", "lowTh"].forEach(function (k) { $(k).addEventListener("input", function () { p[k] = +this.value; paint(); }); });
+  ["name", "phone", "email"].forEach(function (k) { $(k).addEventListener("input", function () { p[k] = this.value; }); });
+  document.addEventListener("change", function (e) { var k = e.target.dataset && e.target.dataset.k; if (k) p[k] = e.target.checked; });
+  $("soh").addEventListener("input", function () { $("sohV").textContent = this.value; });
+  $("soc").addEventListener("input", function () { $("socV").textContent = this.value; });
+  $("theme").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    p.theme = b.dataset.t; SirTheme(p.theme); S.set("theme", p.theme); paint();
+  });
+  $("save").addEventListener("click", function () {
+    var cap = Math.max(20, Math.min(200, +$("capacity").value || DEF_CAP));
+    S.set("capacity", cap); S.set("soh", +$("soh").value); S.set("soc", +$("soc").value);
+    S.set("mode", p.mode); S.set("modeFactor", +mult().toFixed(3)); S.set("prefs", p);
+    SirToast("تم حفظ الإعدادات");
+  });
+  $("reset").addEventListener("click", function () {
+    p = Object.assign({}, DEF); S.set("capacity", 80); S.set("soh", 93); S.set("soc", 68);
+    S.set("mode", "comfort"); S.set("modeFactor", 1); S.set("prefs", p); S.set("theme", "dark"); SirTheme("dark");
+    paint(); SirToast("تمت الاستعادة");
+  });
+  var DEF_CAP = 80;
+  paint();
+})();
+
+</script>
+</body>
+</html>

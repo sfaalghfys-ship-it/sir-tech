@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050a08;--surface:#0a1410;--card:#0e1a15;--card2:#12221b;--line:#1c3027;--ink:#e9f5ef;--mute:#8aa399;--accent:#00ff88;--accent-ink:#00130a;--warn:#ffb020;--bad:#ff5d5d;color-scheme:dark;box-sizing:border-box}
+:root[data-theme="light"]{--bg:#f1f6f3;--surface:#fff;--card:#fff;--card2:#eef5f1;--line:#d9e6df;--ink:#10201a;--mute:#5a7168;--accent:#00a860;--accent-ink:#fff;--warn:#b86e00;--bad:#c62828;color-scheme:light}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;font-family:Tajawal,"Segoe UI",Tahoma,sans-serif;color:var(--ink);line-height:1.65;background:radial-gradient(900px 420px at 85% -8%,rgba(0,255,136,.09),transparent),var(--bg);min-height:100vh}
+a{color:inherit}
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:12px 20px;padding-top:calc(12px + env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;font-size:1.15rem;white-space:nowrap}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.brand small{color:var(--mute);font-weight:500;font-size:.75rem;letter-spacing:.12em}
+.nav nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav nav a{padding:7px 16px;border-radius:99px;text-decoration:none;color:var(--mute);font-weight:500;white-space:nowrap;transition:.2s}
+.nav nav a:hover{color:var(--ink)}
+.nav nav a[aria-current=page]{color:var(--accent-ink);background:var(--accent);font-weight:700}
+.page{max-width:1100px;margin:0 auto;padding:26px 16px 30px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+h1{margin:0;font-size:1.8rem;font-weight:800}h2{margin:0 0 12px;font-size:1.05rem;font-weight:700}
+.sub{margin:2px 0 0;color:var(--mute);font-size:.9rem}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.stat.wide{grid-column:1/-1}
+.k{display:block;color:var(--mute);font-size:.85rem}
+.v{display:block;font-size:2rem;font-weight:800;line-height:1.2;margin-top:2px}
+.accent{color:var(--accent)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;box-shadow:0 0 12px var(--accent);transition:width .4s}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:99px;font-size:.8rem;font-weight:700;background:var(--card2);border:1px solid var(--line)}
+.chip.ok{color:var(--accent);border-color:var(--accent)}.chip.warn{border-color:var(--warn)}.chip.bad{border-color:var(--bad)}
+label.f{display:block;margin-top:14px;font-size:.88rem;color:var(--mute)}
+label.f b{color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=time],select{width:100%;margin-top:4px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--ink);font:inherit}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.seg button,.btn{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--ink);border-radius:12px;padding:9px 16px;font:inherit;font-weight:500}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:800;box-shadow:0 8px 28px rgba(0,255,136,.22)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border:0}
+.switch{position:relative;width:46px;height:26px;flex:none}
+.switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:1}
+.switch i{position:absolute;inset:0;border-radius:99px;background:var(--line);transition:.2s}
+.switch i:after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:.2s}
+.switch input:checked+i{background:var(--accent)}
+.switch input:checked+i:after{inset-inline-start:23px;background:var(--accent-ink)}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.list li{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:var(--card2);border:1px solid var(--line);cursor:pointer}
+.list li[aria-selected=true]{border-color:var(--accent)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.map{width:100%;height:auto;border-radius:14px;background:var(--card2);border:1px solid var(--line)}
+.two{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.modes{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.mode{cursor:pointer;text-align:start;border:1px solid var(--line);background:var(--card2);color:var(--ink);border-radius:14px;padding:14px;font:inherit}
+.mode b{display:block;font-size:1.05rem}.mode span{color:var(--mute);font-size:.8rem}
+.mode[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset,0 0 24px rgba(0,255,136,.15)}
+.foot{max-width:1100px;margin:0 auto;padding:10px 16px calc(28px + env(safe-area-inset-bottom,0px));color:var(--mute);font-size:.8rem}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,30px);opacity:0;background:var(--accent);color:var(--accent-ink);padding:10px 22px;border-radius:99px;font-weight:700;transition:.3s;z-index:99}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.nav .out{margin-inline-start:auto;padding:7px 16px;border-radius:99px;border:1px solid var(--line);text-decoration:none;color:var(--mute);font-size:.9rem;white-space:nowrap}.nav .out:hover{color:var(--bad);border-color:var(--bad)}
+</style>
+<script>
+(function () {
+  "use strict";
+  var HOME = "dashboard.html", LOGIN = "login.html"; // غيّريهما لو أسماء ملفاتك مختلفة
+  var KEY = "sirtech_store_v1";
+  var D = { soc: 68, soh: 93, capacity: 80, mode: "comfort", modeFactor: 1, theme: "dark", prefs: null };
+  var S;
+  try { S = Object.assign({}, D, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { S = Object.assign({}, D); }
+  window.SirStore = {
+    get: function (k) { return S[k]; },
+    set: function (k, v) { S[k] = v; try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+  };
+  window.SirTheme = function (t) {
+    var r = t === "auto" ? (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark") : t;
+    document.documentElement.setAttribute("data-theme", r);
+  };
+  SirTheme(S.theme);
+  window.SirToast = function (msg) {
+    var t = document.getElementById("toast");
+    if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add("on");
+    clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("on"); }, 2200);
+  };
+  var LINKS = [["home", "الرئيسية", HOME], ["charging", "إدارة الشحن", "charging.html"], ["navigation", "الملاحة", "navigation.html"], ["settings", "الإعدادات", "settings.html"]];
+  document.addEventListener("DOMContentLoaded", function () {
+    var el = document.getElementById("nav"); if (!el) return;
+    var cur = document.body.dataset.page;
+    el.className = "nav";
+    el.innerHTML = '<a class="brand" href="' + HOME + '"><i></i>سير تك<small>SIR TECH</small></a><nav aria-label="التنقل الرئيسي">' +
+      LINKS.map(function (l) { return '<a href="' + l[2] + '"' + (l[0] === cur ? ' aria-current="page"' : "") + ">" + l[1] + "</a>"; }).join("") + '</nav><a class="out" href="' + LOGIN + '">تسجيل الخروج</a>';
+  });
+})();
+</script>
+<title>الملاحة والمسارات الذكية | سير تك</title>
+</head>
+<body data-page="navigation">
+  <!-- شريط التنقل الموحد لمنصة سير تك -->
+<nav style="background: rgba(0, 0, 0, 0.85); border-bottom: 1px solid #00ff88; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; direction: rtl;">
+    <div style="font-size: 1.2rem; font-weight: bold; color: #00ff88;">Sir Tech | سير تك</div>
+    <div style="display: flex; gap: 20px;">
+        <a href="dashboard.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">لوحة التحكم</a>
+        <a href="charging.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">إدارة الشحن</a>
+        <a href="navigation.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">الملاحة الذكية</a>
+        <a href="settings.html" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; transition: 0.3s;">الإعدادات</a>
+    </div>
+</nav>
+<header id="nav"></header>
+<main class="page">
+  <div class="head"><div><h1>الملاحة والمسارات الذكية</h1><p class="sub">تقدير الاستهلاك وتوقفات الشحن على الطريق · <span id="modeTxt"></span></p></div><span class="chip" id="verdict">-</span></div>
+
+  <section class="grid two">
+    <div class="stat">
+      <h2>مخطط الرحلة</h2>
+      <label class="f" for="dest">الوجهة (مسافات تجريبية)</label>
+      <select id="dest">
+        <option value="80">وجهة قريبة · ≈ 80 كم</option>
+        <option value="220">وجهة متوسطة · ≈ 220 كم</option>
+        <option value="450" selected>رحلة طويلة · ≈ 450 كم</option>
+        <option value="700">رحلة بين مدن · ≈ 700 كم</option>
+        <option value="custom">مسافة مخصصة…</option>
+      </select>
+      <label class="f" for="dist">المسافة: <b><span id="distV"></span> كم</b></label>
+      <input id="dist" type="range" min="20" max="1000" step="10" value="450">
+      <label class="f" for="soc">الشحن عند الانطلاق: <b><span id="socV"></span>%</b></label>
+      <input id="soc" type="range" min="10" max="100" value="90">
+      <label class="f" for="temp">حرارة الجو: <b><span id="tempV"></span>°م</b></label>
+      <input id="temp" type="range" min="10" max="52" value="38">
+      <label class="f" for="speed">السرعة: <b><span id="speedV"></span> كم/س</b></label>
+      <input id="speed" type="range" min="60" max="140" step="5" value="110">
+      <div class="row"><span>المكيف شغّال</span><label class="switch"><input id="ac" type="checkbox" checked aria-label="المكيف"><i></i></label></div>
+    </div>
+    <div class="stat">
+      <h2>إعدادات الشحن على الطريق</h2>
+      <label class="f" for="reserve">احتياطي الوصول: <b><span id="resV"></span>%</b></label>
+      <input id="reserve" type="range" min="5" max="30" value="10">
+      <label class="f" for="to">الشحن حتى: <b><span id="toV"></span>%</b></label>
+      <input id="to" type="range" min="60" max="100" step="5" value="80">
+      <span class="k" style="margin-top:14px">نوع الشاحن</span>
+      <div class="seg" id="kwSeg"><button type="button" data-kw="100" aria-pressed="true">سريع DC · 100 kW</button><button type="button" data-kw="11" aria-pressed="false">عادي AC · 11 kW</button></div>
+      <h2 style="margin-top:22px">المسار</h2>
+      <svg class="map" id="route" viewBox="0 0 400 110" role="img" aria-label="رسم المسار وتوقفات الشحن"></svg>
+    </div>
+  </section>
+
+  <section class="grid" aria-label="التقديرات">
+    <div class="stat"><span class="k">استهلاك الرحلة</span><b class="v accent"><span id="kwh">0</span> kWh</b><span class="k"><span id="p100"></span> kWh / 100 كم</span></div>
+    <div class="stat"><span class="k">نسبة البطارية المستهلكة</span><b class="v"><span id="used">0</span>%</b></div>
+    <div class="stat"><span class="k">الشحن عند الوصول</span><b class="v accent"><span id="arr">0</span>%</b></div>
+    <div class="stat"><span class="k">الزمن الكلي</span><b class="v" id="total">-</b><span class="k" id="split"></span></div>
+  </section>
+
+  <section class="stat wide"><h2>توقفات الشحن المقترحة</h2><ul class="list" id="stops"></ul></section>
+</main>
+<footer class="foot">سير تك · التقديرات مبنية على معاملات افتراضية (حرارة، سرعة، مكيف، نمط القيادة) وليست قياسات حقيقية لـ EXOBOT.</footer>
+
+<script>
+"use strict";
+/* ---------- المنطق (دوال نقية قابلة للاختبار) ---------- */
+const CONFIG = { capacityKwh: 80, baseConsumption: 18 /* kWh/100km, افتراض */, reserve: 10 };
+
+function clamp(v, lo, hi){ return Math.min(hi, Math.max(lo, v)); }
+
+function consumptionPer100(tempC, speedKmh, acOn, base = CONFIG.baseConsumption){
+  const speedFactor = 1 + Math.max(0, speedKmh - 90) * 0.006;
+  const heatFactor  = 1 + Math.max(0, tempC - 25) * 0.004;
+  const acFactor    = acOn ? 1 + clamp((tempC - 20) * 0.006, 0, 0.2) : 1;
+  return base * speedFactor * heatFactor * acFactor;
+}
+
+function estimateRangeKm(soc, soh, tempC, speedKmh, acOn){
+  const usableKwh = CONFIG.capacityKwh * (soh / 100) * (soc / 100);
+  return Math.round((usableKwh / consumptionPer100(tempC, speedKmh, acOn)) * 100);
+}
+
+function sohLabel(soh){
+  if (soh >= 90) return { text: "ممتازة", cls: "ok" };
+  if (soh >= 80) return { text: "جيدة", cls: "warn" };
+  return { text: "تحتاج فحصًا", cls: "bad" };
+}
+
+function buildAlerts(s){
+  const out = [];
+  if (s.soc <= 20) out.push({ cls: "bad", text: "الشحن منخفض (" + s.soc + "%). خطّط لمحطة شحن قريبة." });
+  if (s.cellTemp >= 45) out.push({ cls: "bad", text: "حرارة الخلايا مرتفعة (" + s.cellTemp + "°م). قلّل السرعة أو ركّن بالظل." });
+  else if (s.cellTemp >= 38) out.push({ cls: "warn", text: "حرارة الخلايا أعلى من المعتاد (" + s.cellTemp + "°م)." });
+  if (s.tripKm > s.rangeKm) out.push({ cls: "bad", text: "الرحلة المحددة أطول من المدى الحالي، تحتاج توقف شحن." });
+  if (!out.length) out.push({ cls: "ok", text: "كل شيء طبيعي، لا توجد تنبيهات." });
+  return out;
+}
+
+function planTrip(tripKm, rangeKm, reservePct = CONFIG.reserve){
+  const safeRange = Math.floor(rangeKm * (1 - reservePct / 100));
+  if (safeRange <= 0) return { feasible: false, stops: Infinity, safeRange };
+  const stops = Math.max(0, Math.ceil(tripKm / safeRange) - 1);
+  return { feasible: true, stops, safeRange };
+}
+
+if (typeof module !== "undefined") module.exports = { CONFIG, clamp, consumptionPer100, estimateRangeKm, sohLabel, buildAlerts, planTrip };
+
+</script>
+<script>
+"use strict";
+var Energy = (function () {
+  // كل القيم أدناه افتراضات تجريبية وليست مواصفات رسمية
+  var POWER = { ac: 11, dc: 100 };                       // kW
+  var TARIFF = { home: 0.18, offpeak: 0.12, pub: 0.45 }; // ر.س/kWh
+  var EFF = 0.92;
+  function cp() {
+    var f = typeof module !== "undefined" ? require("./logic.js").consumptionPer100 : consumptionPer100;
+    return f.apply(null, arguments);
+  }
+  function energyNeeded(cap, soh, from, to) { return Math.max(0, cap * (soh / 100) * (to - from) / 100); }
+  function chargeHours(kwh, kw) { return kwh / (kw * EFF); }
+  function cost(kwh, rate) { return kwh / EFF * rate; }
+  function fmtDur(h) { var m = Math.round(h * 60); return Math.floor(m / 60) + " س " + (m % 60) + " د"; }
+  function planRoute(o) {
+    var cpk = cp(o.temp, o.speed, o.ac) * (o.mult || 1) / 100, effCap = o.cap * o.soh / 100;
+    var pos = 0, soc = o.soc, stops = [], guard = 0, ok = true, chargeMin = 0;
+    while (pos < o.distKm) {
+      if (guard++ > 12) { ok = false; break; }
+      var remain = o.distKm - pos, reach = Math.max(0, (soc - o.reserve) / 100 * effCap) / cpk;
+      if (reach >= remain) { soc -= remain * cpk / effCap * 100; pos = o.distKm; break; }
+      var leg = Math.floor(reach * 0.9);
+      if (leg < 20) { ok = false; break; }
+      soc -= leg * cpk / effCap * 100; pos += leg;
+      var add = energyNeeded(o.cap, o.soh, soc, o.chargeTo), min = Math.round(chargeHours(add, o.kw) * 60);
+      stops.push({ km: pos, arrivalSoc: Math.round(soc), chargeTo: o.chargeTo, minutes: min, kwh: add });
+      chargeMin += min; soc = o.chargeTo;
+    }
+    var kwhTotal = o.distKm * cpk;
+    return { feasible: ok, stops: stops, arrivalSoc: Math.round(soc), kwhTotal: kwhTotal, per100: cpk * 100,
+      percentUsed: kwhTotal / effCap * 100, driveHours: o.distKm / o.speed, chargeMin: chargeMin };
+  }
+  return { POWER: POWER, TARIFF: TARIFF, energyNeeded: energyNeeded, chargeHours: chargeHours, cost: cost, fmtDur: fmtDur, planRoute: planRoute };
+})();
+if (typeof module !== "undefined") module.exports = Energy;
+
+</script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (i) { return document.getElementById(i); }, S = SirStore, kw = 100;
+  var NAMES = { eco: "Eco", comfort: "Comfort", sport: "Sport", custom: "Custom" };
+  $("soc").value = S.get("soc");
+  $("modeTxt").textContent = "نمط القيادة: " + NAMES[S.get("mode")] + " (×" + (+S.get("modeFactor")).toFixed(2) + ")";
+
+  function val(id) { return +$(id).value; }
+  function render() {
+    var o = { distKm: val("dist"), soc: val("soc"), temp: val("temp"), speed: val("speed"), ac: $("ac").checked,
+      reserve: val("reserve"), chargeTo: val("to"), kw: kw, cap: S.get("capacity"), soh: S.get("soh"), mult: S.get("modeFactor") };
+    ["dist:distV", "soc:socV", "temp:tempV", "speed:speedV", "reserve:resV", "to:toV"].forEach(function (p) {
+      var a = p.split(":"); $(a[1]).textContent = $(a[0]).value;
+    });
+    var r = Energy.planRoute(o);
+    $("kwh").textContent = r.kwhTotal.toFixed(1);
+    $("p100").textContent = r.per100.toFixed(1);
+    $("used").textContent = Math.round(r.percentUsed);
+    $("arr").textContent = r.feasible ? r.arrivalSoc : "-";
+    $("total").textContent = r.feasible ? Energy.fmtDur(r.driveHours + r.chargeMin / 60) : "-";
+    $("split").textContent = r.feasible ? "قيادة " + Energy.fmtDur(r.driveHours) + " + شحن " + r.chargeMin + " د" : "";
+    var v = $("verdict");
+    if (!r.feasible) { v.textContent = "غير ممكن بهذه الإعدادات"; v.className = "chip bad"; }
+    else if (r.stops.length) { v.textContent = r.stops.length + " توقف شحن"; v.className = "chip warn"; }
+    else { v.textContent = "بدون توقف ✓"; v.className = "chip ok"; }
+
+    $("stops").innerHTML = !r.feasible
+      ? '<li class="k">الشحن الحالي أو الاحتياطي لا يكفي للوصول لأول محطة. ارفع الشحن عند الانطلاق أو قلّل السرعة/الاحتياطي.</li>'
+      : r.stops.length ? r.stops.map(function (s, i) {
+          return "<li><span><b>توقف #" + (i + 1) + "</b> عند الكيلو " + s.km + "</span><span class=\"tags\"><span class=\"chip\">وصول " + s.arrivalSoc + "%</span><span class=\"chip ok\">اشحن إلى " + s.chargeTo + "% · ≈ " + s.minutes + " د</span></span></li>";
+        }).join("")
+      : '<li class="k">لا حاجة لتوقف شحن، ستصل بشحن ' + r.arrivalSoc + "% تقريبًا.</li>";
+    draw(o.distKm, r);
+  }
+
+  function draw(d, r) {
+    var X = function (km) { return 20 + km / d * 360; };
+    var g = '<line x1="20" x2="380" y1="55" y2="55" stroke="currentColor" opacity=".25" stroke-width="3" stroke-linecap="round"/>' +
+      '<line x1="20" x2="' + (r.feasible ? 380 : X(r.stops.length ? r.stops[r.stops.length - 1].km : 0)) + '" y1="55" y2="55" stroke="#00ff88" stroke-width="3" stroke-linecap="round"/>' +
+      '<circle cx="20" cy="55" r="7" fill="#00ff88"/><text x="20" y="85" font-size="11" text-anchor="middle" fill="currentColor">انطلاق</text>' +
+      '<circle cx="380" cy="55" r="7" fill="none" stroke="#00ff88" stroke-width="3"/><text x="380" y="85" font-size="11" text-anchor="middle" fill="currentColor">' + d + ' كم</text>';
+    r.stops.forEach(function (s, i) {
+      g += '<circle cx="' + X(s.km) + '" cy="55" r="9" fill="#ffb020"/><text x="' + X(s.km) + '" y="59" font-size="10" font-weight="700" text-anchor="middle" fill="#000">' + (i + 1) + '</text><text x="' + X(s.km) + '" y="30" font-size="10" text-anchor="middle" fill="currentColor">' + s.km + "</text>";
+    });
+    $("route").innerHTML = g;
+  }
+
+  $("dest").addEventListener("change", function () { if (this.value !== "custom") { $("dist").value = this.value; render(); } else $("dist").focus(); });
+  $("dist").addEventListener("input", function () { $("dest").value = [].some.call($("dest").options, function (o) { return o.value === $("dist").value; }) ? $("dist").value : "custom"; });
+  ["dist", "soc", "temp", "speed", "ac", "reserve", "to"].forEach(function (id) { $(id).addEventListener("input", render); });
+  $("kwSeg").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    kw = +b.dataset.kw;
+    [].forEach.call(this.children, function (x) { x.setAttribute("aria-pressed", x === b); });
+    render();
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>
