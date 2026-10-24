@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>سير تك | Sir Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/session.js"></script>
+<script>if(!SirSession.shouldShow(sessionStorage,location.search))document.documentElement.classList.add('no-intro')</script>
+</head>
+<body>
+<section id="intro" aria-label="افتتاحية سير تك">
+  <div class="bg-fallback"></div>
+  <video id="introVideo" autoplay muted playsinline preload="auto" poster="assets/intro-poster.jpg">
+    <source src="assets/intro.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <button id="skipBtn" class="skip" type="button">تخطّي ⟵</button>
+  <button id="playBtn" class="play" type="button" hidden>▶ تشغيل الفيديو</button>
+  <div class="content">
+    <h1 class="brand">سير تك <span>|</span> Sir Tech</h1>
+    <p class="tag">الطريق لك. والطاقة بين يديك.</p>
+    <div class="cta"><button id="introStart" class="btn" type="button">ابدأ رحلتك</button></div>
+  </div>
+</section>
+
+<main class="page">
+  <div style="text-align:center">
+    <h1 style="font-size:clamp(2.2rem,7vw,4rem)">سير تك <span class="accent">|</span> Sir Tech</h1>
+    <p style="color:var(--mut);margin:.6rem 0 1.8rem">الطريق لك. والطاقة بين يديك.</p>
+    <a class="btn" href="login.html">ابدأ رحلتك</a>
+    <p class="foot"><a href="index.html?replay=1">↻ إعادة مشاهدة الافتتاحية</a></p>
+  </div>
+</main>
+<script src="js/intro.js"></script>
+</body>
+</html>

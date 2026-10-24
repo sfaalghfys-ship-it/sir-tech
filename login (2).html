@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تسجيل الدخول | سير تك</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="page">
+  <form class="card" id="loginForm" novalidate>
+    <h1>تسجيل الدخول <span>|</span> سير تك</h1>
+    <label for="email">البريد الإلكتروني</label><input id="email" type="email" required autocomplete="email">
+    <label for="pass">كلمة المرور</label><input id="pass" type="password" required autocomplete="current-password">
+    <p class="msg" id="msg" role="alert"></p>
+    <button class="btn" type="submit">دخول</button>
+    <p class="foot"><a href="index.html?replay=1">↻ إعادة مشاهدة الافتتاحية</a></p>
+  </form>
+</main>
+<script>
+// نموذج تجريبي: استبدل منطق التحقق بمنطق مشروعك الفعلي (الواجهة الخلفية) وأبقِ التحويل للوحة التحكم.
+document.getElementById('loginForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var em=email.value.trim(),pw=pass.value;
+  if(!/^\S+@\S+\.\S+$/.test(em)||pw.length<4){msg.textContent='تحقق من البريد وكلمة المرور.';return}
+  sessionStorage.setItem('sirtech_user',em);location.href='dashboard.html';
+});
+</script>
+</body>
+</html>
